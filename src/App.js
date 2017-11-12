@@ -1,19 +1,41 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import ScheduleList from './components/ScheduleList';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      schedule: [],
+      err: null,
+    };
+  }
+  componentDidMount() {
+    this.retrieveSchedule();
+  }
+
+  retrieveSchedule() {
+    fetch('https://api.tvmaze.com/schedule?country=GB').then((response) => {
+      response.json().then((json) => {
+        this.setState({
+          schedule: json.slice(0, 10),
+        });
+      });
+    }).catch((err) => {
+      this.setState({ err });
+    });
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <main className="App">
+        <section className="errorDisplay">
+          {this.state.err ? <p>{this.state.err}</p> : ''}
+        </section>
+        <section className="schedule">
+          <ScheduleList schedule={this.state.schedule} />
+        </section>
+      </main>
     );
   }
 }
