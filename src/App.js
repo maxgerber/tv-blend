@@ -18,7 +18,7 @@ class App extends Component {
     fetch('https://api.tvmaze.com/schedule?country=GB').then((response) => {
       response.json().then((json) => {
         this.setState({
-          schedule: json.slice(0, 10),
+          schedule: json.slice(0, 18),
         });
       });
     }).catch((err) => {
