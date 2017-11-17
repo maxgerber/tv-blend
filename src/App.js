@@ -31,10 +31,9 @@ class App extends Component {
     return (
       <main styleName="notice">
         <section className="errorDisplay">
-          <p styleName="foo">ASCF</p>
           {this.state.err ? <p>{this.state.err}</p> : ''}
         </section>
-        <section className="schedule">
+        <section styleName="schedule">
           <ScheduleList schedule={this.state.schedule} />
         </section>
       </main>
