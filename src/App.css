@@ -1,3 +1,26 @@
+:root {
+  --mainColor: red;
+  --fooColor: yellow;
+}
+
 .App {
   text-align: center;
+  font-size: 1rem;
+}
+
+p {
+  color: var(--mainColor);
+}
+
+.notice {
+  @if 3 < 5 {
+		background: green;
+	}
+	@else {
+		background: blue;
+	}
+}
+
+.foo {
+  color: var(--fooColor);
 }
