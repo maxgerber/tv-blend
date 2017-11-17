@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import CSSModules from 'react-css-modules';
-import ScheduleList from './components/ScheduleList';
-import styles from './App.css';
+import TvItem from './components/tvItem';
+
+import styles from './styles/App.css';
+// import tvItemStyles from './styles/tvItem.css';
 
 class App extends Component {
   constructor() {
@@ -27,14 +29,20 @@ class App extends Component {
     });
   }
 
+  mapTvItemDiv() {
+    return this.state.schedule.map((tvData) => {
+      return <TvItem tvData={tvData} />;
+    });
+  }
   render() {
     return (
-      <main styleName="notice">
-        <section className="errorDisplay">
-          {this.state.err ? <p>{this.state.err}</p> : ''}
-        </section>
+      <main styleName="App">
+        <header styleName="header">
+          <h1>TV Blender</h1>
+        </header>
+        {this.state.err ? <p>{this.state.err}</p> : ''}
         <section styleName="schedule">
-          <ScheduleList schedule={this.state.schedule} />
+          {this.mapTvItemDiv()}
         </section>
       </main>
     );
