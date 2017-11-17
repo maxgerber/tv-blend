@@ -1,5 +1,11 @@
-.max {
-  width: 5rem;
-  height: 7rem;
+.tvItem {
   padding: 1rem;
+}
+
+.tvItem img {
+  max-width: 100%;
+}
+
+.tvItem h1 {
+  font-size: 1rem;
 }

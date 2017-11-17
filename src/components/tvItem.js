@@ -9,11 +9,11 @@ const TvItem = ({ tvData }) => {
     showImage = <img src={tvData.show.image.medium} alt={tvData.show.name} />;
   }
   return (
-    <div key={tvData.id} title={tvData.show.name} styleName="max">
+    <div title={tvData.show.name} styleName="tvItem">
       <a href={tvData.url}>
-        <h1>{tvData.show.name}</h1>
         <div className="star-rating"><StarRating average={tvData.show.rating.average} /></div>
         {showImage}
+        <h1>{tvData.show.name}</h1>
       </a>
     </div>
   );

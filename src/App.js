@@ -31,7 +31,7 @@ class App extends Component {
 
   mapTvItemDiv() {
     return this.state.schedule.map((tvData) => {
-      return <TvItem tvData={tvData} />;
+      return <TvItem key={tvData.id} tvData={tvData} />;
     });
   }
   render() {
