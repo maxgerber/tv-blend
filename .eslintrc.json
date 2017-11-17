@@ -12,7 +12,8 @@
     "react/jsx-filename-extension": [1, {
       "extensions": [".js", ".jsx"]
     }],
-    "arrow-body-style": ["error", "always"]
+    "arrow-body-style": ["error", "always"],
+    "react/prop-types": 0
   },
   "globals": {
     "fetch": false

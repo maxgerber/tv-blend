@@ -1,0 +1,17 @@
+.tvItem {
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.tvItem:hover {
+  transform: scale(1.1);
+  transition: 0.5s;
+}
+
+.tvItem img {
+  max-width: 100%;
+}
+
+.tvItem h1 {
+  font-size: 1rem;
+}
