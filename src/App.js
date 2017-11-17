@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import CSSModules from 'react-css-modules';
 import ScheduleList from './components/ScheduleList';
-import styles from './App.css';
+import './App.css';
 
 class App extends Component {
   constructor() {
@@ -29,9 +28,8 @@ class App extends Component {
 
   render() {
     return (
-      <main styleName="notice">
+      <main className="App">
         <section className="errorDisplay">
-          <p styleName="foo">ASCF</p>
           {this.state.err ? <p>{this.state.err}</p> : ''}
         </section>
         <section className="schedule">
@@ -42,4 +40,4 @@ class App extends Component {
   }
 }
 
-export default CSSModules(App, styles);
+export default App;
