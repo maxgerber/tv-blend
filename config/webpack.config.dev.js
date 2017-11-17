@@ -161,11 +161,14 @@ module.exports = {
               {
                 loader: require.resolve('css-loader'),
                 options: {
+                  modules: true,
+                  localIdentName: '[name]__[local]___[hash:base64:5]',
                   importLoaders: 1,
                 },
               },
               {
                 loader: require.resolve('postcss-loader'),
+
                 options: {
                   // Necessary for external CSS imports to work
                   // https://github.com/facebookincubator/create-react-app/issues/2677
@@ -173,6 +176,11 @@ module.exports = {
                   plugins: () => {
                     return [
                       require('postcss-flexbugs-fixes'),
+                      require('react-css-modules'),
+                      require('precss'),
+                      // require('stylelint'),
+                      require('postcss-cssnext'),
+                      require('lost'),
                       autoprefixer({
                         browsers: [
                           '>1%',
@@ -182,10 +190,6 @@ module.exports = {
                         ],
                         flexbox: 'no-2009',
                       }),
-                      // require('react-css-modules'),
-                      // require('postcss-cssnext'),
-                      // require('precss'),
-                      // require('lost'),
                     ];
                   },
                 },
