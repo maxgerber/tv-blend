@@ -178,7 +178,7 @@ module.exports = {
                       require('postcss-flexbugs-fixes'),
                       require('react-css-modules'),
                       require('precss'),
-                      // require('stylelint'),
+                      require('stylelint'),
                       require('postcss-cssnext'),
                       require('lost'),
                       autoprefixer({
