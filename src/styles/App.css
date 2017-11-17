@@ -1,29 +1,19 @@
-
 .App {
   text-align: center;
   background-color: rgba(255, 255, 255, 0.5);
-  max-width: 90vw;
+  max-width: 80vw;
   margin: auto;
   font-size: 1rem;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 20fr;
+  grid-template-rows: 10rem 20fr;
   grid-template-areas:
     "header"
     "tv-items";
 }
 
-.notice {
-  max-width: 70vw;
-}
-
 .header {
   grid-area: header;
-}
-
-.schedule a {
-  color: inherit;
-  text-decoration: inherit;
 }
 
 .schedule {
@@ -32,7 +22,11 @@
   grid-template-columns: repeat(auto-fit, minmax(200px, 4fr));
   grid-template-rows: repeat(auto-fit, minmax(300px, 400px));
   grid-column-gap: 0.5rem;
-  grid-auto-flow: row dense;
-  min-height: 100%;
+  grid-auto-flow: row;
   padding: 0 1rem;
+}
+
+.schedule a {
+  color: inherit;
+  text-decoration: inherit;
 }

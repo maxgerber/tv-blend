@@ -1,5 +1,11 @@
 .tvItem {
   padding: 1rem;
+  cursor: pointer;
+}
+
+.tvItem:hover {
+  transform: scale(1.1);
+  transition: 0.5s;
 }
 
 .tvItem img {
