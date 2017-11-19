@@ -1,9 +1,14 @@
 import React from 'react';
+import CSSModules from 'react-css-modules';
+
+import styles from '../styles/Show.css';
 
 const Show = () => {
   return (
-    <div> HELLO </div>
+    <section styleName="show">
+      Hello
+    </section>
   );
 };
 
-export default Show;
+export default CSSModules(Show, styles);
