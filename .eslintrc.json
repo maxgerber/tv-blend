@@ -13,7 +13,9 @@
       "extensions": [".js", ".jsx"]
     }],
     "arrow-body-style": ["error", "always"],
-    "react/prop-types": 0
+    "react/no-unused-state": 0,
+    "react/prop-types": 0,
+    "arrow-parens": 0
   },
   "globals": {
     "fetch": false

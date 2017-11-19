@@ -3,18 +3,20 @@ import cssModules from 'react-css-modules';
 import StarRating from './StarRating';
 import styles from '../styles/tvItem.css';
 
-const TvItem = ({ tvData }) => {
-  let showImage;
-  if (tvData.show.image) {
-    showImage = <img src={tvData.show.image.medium} alt={tvData.show.name} />;
-  }
+const TvItem = ({ tvData, updateState }) => {
+  const img = tvData.show.image.medium;
   return (
-    <div title={tvData.show.name} styleName="tvItem">
-      <a href={tvData.url}>
-        <div className="star-rating"><StarRating average={tvData.show.rating.average} /></div>
-        {showImage}
-        <h1>{tvData.show.name}</h1>
-      </a>
+    <div
+      role="link"
+      tabIndex={0}
+      title={tvData.show.name}
+      styleName="tvItem"
+      onClick={() => { return updateState(tvData.show.id); }}
+      onKeyUp={() => { return updateState(tvData.show.id); }}
+    >
+      <div className="star-rating"><StarRating average={tvData.show.rating.average} /></div>
+      <img src={img || './assets/thumbnail.jpg'} alt={tvData.show.name} />
+      <h1>{tvData.show.name}</h1>
     </div>
   );
 };
