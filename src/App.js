@@ -1,22 +1,29 @@
 import React, { Component } from 'react';
 import CSSModules from 'react-css-modules';
+
 import TvItem from './components/tvItem';
 
 import styles from './styles/App.css';
-// import tvItemStyles from './styles/tvItem.css';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       schedule: [],
+      selectedShowId: null,
       err: null,
     };
+    this.selectShow = this.selectShow.bind(this);
   }
   componentDidMount() {
     this.retrieveSchedule();
   }
 
+  selectShow(id) {
+    this.setState({
+      selectedShowId: id,
+    });
+  }
   retrieveSchedule() {
     fetch('https://api.tvmaze.com/schedule?country=GB').then((response) => {
       response.json().then((json) => {
@@ -31,7 +38,7 @@ class App extends Component {
 
   mapTvItemDiv() {
     return this.state.schedule.map((tvData) => {
-      return <TvItem key={tvData.id} tvData={tvData} />;
+      return <TvItem key={tvData.id} tvData={tvData} updateState={this.selectShow} />;
     });
   }
   render() {

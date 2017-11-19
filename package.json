@@ -53,6 +53,7 @@
     "test": "node scripts/test.js --env=jsdom"
   },
   "devDependencies": {
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "eslint": "^4.10.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
@@ -96,6 +97,9 @@
   "babel": {
     "presets": [
       "react-app"
+    ],
+    "plugins": [
+      "transform-class-properties"
     ]
   },
   "eslintConfig": {
