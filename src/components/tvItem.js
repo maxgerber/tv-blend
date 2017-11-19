@@ -4,10 +4,7 @@ import StarRating from './StarRating';
 import styles from '../styles/tvItem.css';
 
 const TvItem = ({ tvData, updateState }) => {
-  let showImage;
-  if (tvData.show.image) {
-    showImage = <img src={tvData.show.image.medium} alt={tvData.show.name} />;
-  }
+  const img = tvData.show.image.medium;
   return (
     <div
       role="link"
@@ -18,7 +15,7 @@ const TvItem = ({ tvData, updateState }) => {
       onKeyUp={() => { return updateState(tvData.show.id); }}
     >
       <div className="star-rating"><StarRating average={tvData.show.rating.average} /></div>
-      {showImage}
+      <img src={img || './assets/thumbnail.jpg'} alt={tvData.show.name} />;
       <h1>{tvData.show.name}</h1>
     </div>
   );
