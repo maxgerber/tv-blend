@@ -97,9 +97,6 @@
   "babel": {
     "presets": [
       "react-app"
-    ],
-    "plugins": [
-      "transform-class-properties"
     ]
   },
   "eslintConfig": {

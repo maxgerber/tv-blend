@@ -14,14 +14,12 @@ const TvItem = ({ tvData, updateState }) => {
       tabIndex={0}
       title={tvData.show.name}
       styleName="tvItem"
-      onClick={updateState(tvData.show.id)}
-      onKeyUp={updateState(tvData.show.id)}
+      onClick={() => { return updateState(tvData.show.id); }}
+      onKeyUp={() => { return updateState(tvData.show.id); }}
     >
-      <a href="/">
-        <div className="star-rating"><StarRating average={tvData.show.rating.average} /></div>
-        {showImage}
-        <h1>{tvData.show.name}</h1>
-      </a>
+      <div className="star-rating"><StarRating average={tvData.show.rating.average} /></div>
+      {showImage}
+      <h1>{tvData.show.name}</h1>
     </div>
   );
 };
