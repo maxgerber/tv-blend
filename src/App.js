@@ -3,6 +3,7 @@ import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import CSSModules from 'react-css-modules';
 
 import Home from './components/Home';
+import Show from './components/Show';
 import TvItem from './components/tvItem';
 
 import styles from './styles/App.css';
@@ -59,6 +60,11 @@ class App extends Component {
               exact
               path="/"
               render={() => { return <Home contents={this.mapTvItemDiv} />; }}
+            />
+            <Route
+              exact
+              path="/show"
+              render={() => { return <Show />; }}
             />
           </Switch>
         </main>
