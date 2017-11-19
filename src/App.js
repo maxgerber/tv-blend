@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import CSSModules from 'react-css-modules';
 
+import Home from './components/Home';
 import TvItem from './components/tvItem';
 
 import styles from './styles/App.css';
@@ -15,6 +17,7 @@ class App extends Component {
       err: null,
     };
     this.selectShow = this.selectShow.bind(this);
+    this.mapTvItemDiv = this.mapTvItemDiv.bind(this);
   }
   componentDidMount() {
     this.retrieveSchedule();
@@ -45,13 +48,21 @@ class App extends Component {
   }
   render() {
     return (
-      <main styleName="App">
-        <header styleName="header">
-          <h1>TV Blender</h1>
-        </header>
-        {this.state.err ? <p>{this.state.err}</p> : ''}
-        <section styleName="schedule">{this.mapTvItemDiv()}</section>
-      </main>
+      <Router>
+        <main styleName="App">
+          <header styleName="header">
+            <h1>TV Blender</h1>
+          </header>
+          {this.state.err ? <p>{this.state.err}</p> : ''}
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => { return <Home contents={this.mapTvItemDiv} />; }}
+            />
+          </Switch>
+        </main>
+      </Router>
     );
   }
 }
