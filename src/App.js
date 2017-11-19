@@ -26,16 +26,16 @@ class App extends Component {
       currentPage: 'show',
     });
   }
+
   retrieveSchedule() {
-    fetch('https://api.tvmaze.com/schedule?country=GB').then((response) => {
-      response.json().then((json) => {
+    fetch('https://api.tvmaze.com/schedule?country=GB')
+      .then(res => { return res.json(); })
+      .then(json => {
         this.setState({
           schedule: json.slice(0, 18),
         });
-      });
-    }).catch((err) => {
-      this.setState({ err });
-    });
+      })
+      .catch((err) => { return this.setState({ err }); });
   }
 
   mapTvItemDiv() {
