@@ -9,6 +9,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      currentPage: 'home',
       schedule: [],
       selectedShowId: null,
       err: null,
@@ -22,6 +23,7 @@ class App extends Component {
   selectShow(id) {
     this.setState({
       selectedShowId: id,
+      currentPage: 'show',
     });
   }
   retrieveSchedule() {
