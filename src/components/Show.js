@@ -3,12 +3,14 @@ import CSSModules from 'react-css-modules';
 
 import styles from '../styles/Show.css';
 
-const Show = () => {
-  // console.log(props);
+const Show = ({ contents }) => {
   return (
-    <section styleName="show">
-      {/* Hey, {'' || props.contents.name} */}
-    </section>
+    !contents ?
+      <section styleName="show">Loading...</section>
+      :
+      <section styleName="show">
+      Hey, {'' || contents.name}
+      </section>
   );
 };
 
