@@ -4,9 +4,10 @@ import CSSModules from 'react-css-modules';
 import styles from '../styles/Show.css';
 
 const Show = () => {
+  // console.log(props);
   return (
     <section styleName="show">
-      Hello
+      {/* Hey, {'' || props.contents.name} */}
     </section>
   );
 };

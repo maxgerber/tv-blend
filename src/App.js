@@ -14,11 +14,13 @@ class App extends Component {
     this.state = {
       currentPage: 'home',
       schedule: [],
+      tvShowData: null,
       selectedShowId: null,
       err: null,
     };
     this.selectShow = this.selectShow.bind(this);
     this.mapTvItemDiv = this.mapTvItemDiv.bind(this);
+    this.retrieveShow = this.retrieveShow.bind(this);
   }
   componentDidMount() {
     this.retrieveSchedule();
@@ -28,7 +30,20 @@ class App extends Component {
     this.setState({
       selectedShowId: id,
       currentPage: 'show',
+    }, () => {
+      this.retrieveShow();
     });
+  }
+
+  retrieveShow() {
+    fetch(`http://api.tvmaze.com/shows/${this.state.selectedShowId}`)
+      .then(res => { return res.json(); })
+      .then(json => {
+        this.setState({
+          tvShowData: json,
+        });
+      });
+    // .catch(err => { return this.setState({ err }); });
   }
 
   retrieveSchedule() {
@@ -64,7 +79,7 @@ class App extends Component {
             <Route
               exact
               path="/show"
-              render={() => { return <Show />; }}
+              render={() => { return <Show contents={this.state.tvShowData} />; }}
             />
           </Switch>
         </main>
