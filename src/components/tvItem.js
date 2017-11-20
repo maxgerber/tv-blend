@@ -1,5 +1,5 @@
 import React from 'react';
-import cssModules from 'react-css-modules';
+import CSSModules from 'react-css-modules';
 import { Link } from 'react-router-dom';
 import StarRating from './StarRating';
 import styles from '../styles/tvItem.css';
@@ -24,4 +24,4 @@ const TvItem = ({ tvData, updateState }) => {
   );
 };
 
-export default cssModules(TvItem, styles);
+export default CSSModules(TvItem, styles);
