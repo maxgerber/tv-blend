@@ -16,6 +16,8 @@ class App extends Component {
       currentPage: 'home',
       schedule: [],
       tvShowData: null,
+      castData: null,
+      episodesData: null,
       selectedShowId: null,
       err: null,
     };
@@ -44,14 +46,30 @@ class App extends Component {
   }
 
   retrieveShow() {
-    fetch(`http://api.tvmaze.com/shows/${this.state.selectedShowId}`)
+    const showUrl = `http://api.tvmaze.com/shows/${this.state.selectedShowId}`;
+    fetch(`${showUrl}`)
       .then(res => { return res.json(); })
       .then(json => {
         this.setState({
           tvShowData: json,
         });
-      });
-    // .catch(err => { return this.setState({ err }); });
+
+        return fetch(`${showUrl}/cast`);
+      })
+      .then(res => { return res.json(); })
+      .then(json => {
+        this.setState({
+          castData: json,
+        });
+        return fetch(`${showUrl}/episodes`);
+      })
+      .then(res => { return res.json(); })
+      .then(json => {
+        this.setState({
+          episodesData: json,
+        });
+      })
+      .catch(err => { return this.setState({ err }); });
   }
 
   retrieveSchedule() {
@@ -83,7 +101,14 @@ class App extends Component {
             <Route
               exact
               path="/show"
-              render={() => { return <Show contents={this.state.tvShowData} />; }}
+              render={
+                () => {
+                 return (<Show
+                   show={this.state.tvShowData}
+                   cast={this.state.castData}
+                   episodes={this.state.episodesData}
+                 />);
+              }}
             />
           </Switch>
         </main>

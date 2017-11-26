@@ -6,35 +6,36 @@ import arrayToList from '../helpers/arrayToList';
 
 import styles from '../styles/Show.css';
 
-const Show = ({ contents }) => {
+const Show = ({ show, episodes, cast }) => {
   return (
-    !contents
+    !episodes
       ? <section styleName="show">Loading...</section>
       :
       <section styleName="show">
-        <img src={contents.image.medium} alt={contents.name} />
-        <h1>{'' || contents.name}</h1>
-        <p>{removeHTML(contents.summary)}</p>
+        <img src={show.image.medium} alt={show.name} />
+        <h1>{'' || show.name}</h1>
+        <p>{removeHTML(show.summary)}</p>
         <table>
           <tr>
             <th>Streamed on</th>
-            <td>{contents.network.name}</td>
+            <td>{show.network.name}</td>
           </tr>
           <tr>
             <th>Schedule</th>
-            <td>{arrayToList(contents.schedule.days)}</td>
+            <td>{arrayToList(show.schedule.days)}</td>
           </tr>
           <tr>
             <th>Status</th>
-            <td>{contents.status}</td>
+            <td>{show.status}</td>
           </tr>
           <tr>
             <th>Genres</th>
-            <td>{arrayToList(contents.genres)}
+            <td>{arrayToList(show.genres)}
             </td>
           </tr>
         </table>
-
+        <p>{cast[0].person.name}</p>
+        <p>{episodes[0].name}</p>
       </section>);
 };
 
