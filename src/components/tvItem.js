@@ -1,8 +1,18 @@
 import React from 'react';
 import CSSModules from 'react-css-modules';
 import { Link } from 'react-router-dom';
-import StarRating from './StarRating';
+import Star from './Star';
 import styles from '../styles/tvItem.css';
+
+const starRating = (num, id) => {
+  const decRating = Math.round(num * 2) / 4;
+  const rating = Math.ceil(decRating);
+  return Array(rating).fill().map(() => {
+    return (
+      <Star key={`${id}-star-${rating}`} />
+    );
+  });
+};
 
 const TvItem = ({ tvData, updateState }) => {
   const img = tvData.show.image.medium;
@@ -16,8 +26,10 @@ const TvItem = ({ tvData, updateState }) => {
         onClick={() => { return updateState(tvData.show.id); }}
         onKeyUp={() => { return updateState(tvData.show.id); }}
       >
-        <div className="star-rating"><StarRating average={tvData.show.rating.average} /></div>
         <img src={img || 'assets/thumbnail.jpg'} alt={tvData.show.name} />
+        <div styleName="star-rating">
+          {starRating(tvData.show.rating.average, tvData.show.id)}
+        </div>
         <h1>{tvData.show.name}</h1>
       </div>
     </Link>

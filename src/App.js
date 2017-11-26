@@ -66,7 +66,7 @@ class App extends Component {
       .then(res => { return res.json(); })
       .then(json => {
         this.setState({
-          episodesData: json,
+          episodesData: json.slice(0, 10),
         });
       })
       .catch(err => { return this.setState({ err }); });
