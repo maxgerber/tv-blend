@@ -17,7 +17,7 @@ const TvItem = ({ tvData, updateState }) => {
         onKeyUp={() => { return updateState(tvData.show.id); }}
       >
         <div className="star-rating"><StarRating average={tvData.show.rating.average} /></div>
-        <img src={img || './assets/thumbnail.jpg'} alt={tvData.show.name} />
+        <img src={img || 'assets/thumbnail.jpg'} alt={tvData.show.name} />
         <h1>{tvData.show.name}</h1>
       </div>
     </Link>

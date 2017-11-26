@@ -5,6 +5,7 @@ import CSSModules from 'react-css-modules';
 import Home from './components/Home';
 import Show from './components/Show';
 import TvItem from './components/tvItem';
+// import dummyHomeData from './data/dummyHomeData.json';
 
 import styles from './styles/App.css';
 
@@ -23,7 +24,14 @@ class App extends Component {
     this.retrieveShow = this.retrieveShow.bind(this);
   }
   componentDidMount() {
+    // this.setScheduleState(dummyHomeData);
     this.retrieveSchedule();
+  }
+
+  setScheduleState(json) {
+    this.setState({
+      schedule: json.slice(0, 18),
+    });
   }
 
   selectShow(id) {
@@ -49,11 +57,7 @@ class App extends Component {
   retrieveSchedule() {
     fetch('https://api.tvmaze.com/schedule?country=GB')
       .then(res => { return res.json(); })
-      .then(json => {
-        this.setState({
-          schedule: json.slice(0, 18),
-        });
-      })
+      .then(json => { return this.setScheduleState(json); })
       .catch((err) => { return this.setState({ err }); });
   }
 
