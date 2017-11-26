@@ -3,9 +3,16 @@ import CSSModules from 'react-css-modules';
 
 import removeHTML from '../helpers/removeHTML';
 import arrayToList from '../helpers/arrayToList';
-
+import Actor from './Actor';
 import styles from '../styles/Show.css';
 
+const starringList = (cast) => {
+  console.log('CAST: ', cast);
+  return cast.map((actor) => {
+    console.log('ACTOR: ', actor);
+    return <Actor key={actor.name} actor={actor} />;
+  });
+};
 const Show = ({ show, episodes, cast }) => {
   return (
     !episodes
@@ -34,8 +41,9 @@ const Show = ({ show, episodes, cast }) => {
             </td>
           </tr>
         </table>
-        <p>{cast[0].person.name}</p>
-        <p>{episodes[0].name}</p>
+        <section>
+          {starringList(cast)}
+        </section>
       </section>);
 };
 

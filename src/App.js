@@ -59,7 +59,7 @@ class App extends Component {
       .then(res => { return res.json(); })
       .then(json => {
         this.setState({
-          castData: json,
+          castData: json.slice(0, 5),
         });
         return fetch(`${showUrl}/episodes`);
       })
