@@ -59,14 +59,14 @@ class App extends Component {
       .then(res => { return res.json(); })
       .then(json => {
         this.setState({
-          castData: json,
+          castData: json.slice(0, 5),
         });
         return fetch(`${showUrl}/episodes`);
       })
       .then(res => { return res.json(); })
       .then(json => {
         this.setState({
-          episodesData: json,
+          episodesData: json.slice(0, 10),
         });
       })
       .catch(err => { return this.setState({ err }); });
