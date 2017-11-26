@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import CSSModules from 'react-css-modules';
 
+import Home from './components/Home';
+import Show from './components/Show';
 import TvItem from './components/tvItem';
 // import dummyHomeData from './data/dummyHomeData.json';
 
@@ -12,10 +15,15 @@ class App extends Component {
     this.state = {
       currentPage: 'home',
       schedule: [],
+      tvShowData: null,
+      castData: null,
+      episodesData: null,
       selectedShowId: null,
       err: null,
     };
     this.selectShow = this.selectShow.bind(this);
+    this.mapTvItemDiv = this.mapTvItemDiv.bind(this);
+    this.retrieveShow = this.retrieveShow.bind(this);
   }
   componentDidMount() {
     // this.setScheduleState(dummyHomeData);
@@ -32,7 +40,36 @@ class App extends Component {
     this.setState({
       selectedShowId: id,
       currentPage: 'show',
+    }, () => {
+      this.retrieveShow();
     });
+  }
+
+  retrieveShow() {
+    const showUrl = `http://api.tvmaze.com/shows/${this.state.selectedShowId}`;
+    fetch(`${showUrl}`)
+      .then(res => { return res.json(); })
+      .then(json => {
+        this.setState({
+          tvShowData: json,
+        });
+
+        return fetch(`${showUrl}/cast`);
+      })
+      .then(res => { return res.json(); })
+      .then(json => {
+        this.setState({
+          castData: json,
+        });
+        return fetch(`${showUrl}/episodes`);
+      })
+      .then(res => { return res.json(); })
+      .then(json => {
+        this.setState({
+          episodesData: json,
+        });
+      })
+      .catch(err => { return this.setState({ err }); });
   }
 
   retrieveSchedule() {
@@ -49,13 +86,33 @@ class App extends Component {
   }
   render() {
     return (
-      <main styleName="App">
-        <header styleName="header">
-          <h1>TV Blender</h1>
-        </header>
-        <p>{this.state.err ? this.state.err : ''}</p>
-        <section styleName="schedule">{this.mapTvItemDiv()}</section>
-      </main>
+      <Router>
+        <main styleName="App">
+          <header styleName="header">
+            <h1>TV Blender</h1>
+          </header>
+          {this.state.err ? <p>{this.state.err}</p> : ''}
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => { return <Home contents={this.mapTvItemDiv} />; }}
+            />
+            <Route
+              exact
+              path="/show"
+              render={
+                () => {
+                 return (<Show
+                   show={this.state.tvShowData}
+                   cast={this.state.castData}
+                   episodes={this.state.episodesData}
+                 />);
+              }}
+            />
+          </Switch>
+        </main>
+      </Router>
     );
   }
 }
