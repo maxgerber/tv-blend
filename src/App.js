@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CSSModules from 'react-css-modules';
 
 import TvItem from './components/tvItem';
+// import dummyHomeData from './data/dummyHomeData.json';
 
 import styles from './styles/App.css';
 
@@ -17,7 +18,14 @@ class App extends Component {
     this.selectShow = this.selectShow.bind(this);
   }
   componentDidMount() {
+    // this.setScheduleState(dummyHomeData);
     this.retrieveSchedule();
+  }
+
+  setScheduleState(json) {
+    this.setState({
+      schedule: json.slice(0, 18),
+    });
   }
 
   selectShow(id) {
@@ -30,11 +38,7 @@ class App extends Component {
   retrieveSchedule() {
     fetch('https://api.tvmaze.com/schedule?country=GB')
       .then(res => { return res.json(); })
-      .then(json => {
-        this.setState({
-          schedule: json.slice(0, 18),
-        });
-      })
+      .then(json => { return this.setScheduleState(json); })
       .catch((err) => { return this.setState({ err }); });
   }
 
@@ -49,7 +53,7 @@ class App extends Component {
         <header styleName="header">
           <h1>TV Blender</h1>
         </header>
-        {this.state.err ? <p>{this.state.err}</p> : ''}
+        <p>{this.state.err ? this.state.err : ''}</p>
         <section styleName="schedule">{this.mapTvItemDiv()}</section>
       </main>
     );
