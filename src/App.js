@@ -53,7 +53,7 @@ class App extends Component {
         <header styleName="header">
           <h1>TV Blender</h1>
         </header>
-        {this.state.err ? <p>{this.state.err}</p> : ''}
+        <p>{this.state.err ? this.state.err : ''}</p>
         <section styleName="schedule">{this.mapTvItemDiv()}</section>
       </main>
     );
