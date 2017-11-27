@@ -1,3 +1,49 @@
 .show {
   font-size: 2rem;
 }
+
+img {
+  height: 100%;
+}
+
+.show__header {
+  background-color: #ebebeb;
+  display: flex;
+  padding: 4rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.show__header header {
+  padding-left: 1rem;
+}
+
+.showInfo__header {
+  font-size: 2rem;
+  padding: 1.5rem 0 1rem;
+}
+
+.showInfo thead .bb-none {
+  border-bottom: none;
+}
+
+.showInfo__subheader {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.showInfo__body {
+  font-size: 1.5rem;
+  color: grey;
+}
+
+.dn {
+  display: none;
+}
+
+.showInfo tr {
+  border-bottom: 1px solid black;
+}
+.showInfo td {
+  padding: 1.8rem;
+}

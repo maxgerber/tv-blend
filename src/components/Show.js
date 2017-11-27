@@ -24,34 +24,41 @@ const Show = ({ show, episodes, cast }) => {
       ? <section styleName="show">Loading...</section>
       :
       <section styleName="show">
-        <img src={show.image.medium} alt={show.name} />
-        <h1>{'' || show.name}</h1>
-        <p>{removeHTML(show.summary)}</p>
-        <table>
+        <section styleName="show__header">
+          <img src={show.image.medium} alt={show.name} />
+          <header>
+            <h1>{'' || show.name}</h1>
+            <p>{removeHTML(show.summary)}</p>
+          </header>
+        </section>
+        <table styleName="showInfo">
+          <thead>
+            <tr styleName="bb-none"><th styleName="showInfo__header">Show Info</th></tr>
+          </thead>
           <tbody>
             <tr>
-              <th>Streamed on</th>
-              <td>{show.network.name}</td>
+              <th styleName="showInfo__subheader">Streamed on</th>
+              <td styleName="showInfo__body">{show.network.name}</td>
             </tr>
             <tr>
-              <th>Schedule</th>
-              <td>{arrayToList(show.schedule.days)}</td>
+              <th styleName="showInfo__subheader">Schedule</th>
+              <td styleName="showInfo__body">{arrayToList(show.schedule.days)}</td>
             </tr>
             <tr>
-              <th>Status</th>
-              <td>{show.status}</td>
+              <th styleName="showInfo__subheader">Status</th>
+              <td styleName="showInfo__body">{show.status}</td>
             </tr>
             <tr>
-              <th>Genres</th>
-              <td>{arrayToList(show.genres)}
+              <th styleName="showInfo__subheader">Genres</th>
+              <td styleName="showInfo__body">{arrayToList(show.genres)}
               </td>
             </tr>
           </tbody>
         </table>
-        <section>
+        <section styleName="dn">
           {starringList(cast)}
         </section>
-        <table>
+        <table styleName="dn">
           <tbody>
             {episodeList(episodes)}
           </tbody>
