@@ -10,11 +10,19 @@ const Actor = ({ actor }) => {
       ? 'Themself'
       : (actor.character.name);
   return (
-    <section>
-      <img src={actor.person.image.medium} alt={actor.person.name} />
-      <h2>{actor.person.name}</h2>
-      <h2>{character}</h2>
-    </section>
+    <tr>
+      <th>
+        <div
+          style={{ backgroundImage: `url(${actor.person.image.medium})` }}
+          styleName="actor-img"
+          alt={actor.person.name}
+        />
+      </th>
+      <th styleName="table__subheader">
+        {actor.person.name}
+      </th>
+      <td styleName="table__body">{character}</td>
+    </tr>
   );
 };
 
