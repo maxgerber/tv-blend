@@ -16,6 +16,7 @@ img {
 
 .show__header header {
   padding-left: 1rem;
+  font-size: calc(0.5rem + 1vw);
 }
 
 .showInfo__header {
