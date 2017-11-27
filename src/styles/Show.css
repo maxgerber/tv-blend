@@ -8,6 +8,7 @@ img {
 
 .show__header {
   background-color: #ebebeb;
+  background-image: linear-gradient(180deg, #ebebeb 60%, #ffffff 100%);
   display: flex;
   padding: 4rem;
   align-items: center;
@@ -73,6 +74,9 @@ img {
   height: 50px;
   border-radius: 100%;
   margin: auto;
+  background-position: center top;
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 
 .tables {
